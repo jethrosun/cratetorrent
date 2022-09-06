@@ -4,7 +4,7 @@ use std::{
     path::Path,
 };
 
-use nix::sys::uio::{preadv, pwritev};
+use nix::sys::uio::{readv, writev};
 
 use crate::{
     disk::error::*,
