@@ -80,7 +80,7 @@ impl TorrentFile {
         // transferred to disk (or an error occurs)
         let mut total_write_count = 0;
         while !iovecs.as_slice().is_empty() {
-            let write_count = pwritev(
+            let write_count = writev(
                 self.handle.as_raw_fd(),
                 iovecs.as_slice(),
                 file_slice.offset as i64,
@@ -138,7 +138,7 @@ impl TorrentFile {
         // transferred to disk (or an error occurs)
         let mut total_read_count = 0;
         while !iovecs.is_empty() && (total_read_count as u64) < file_slice.len {
-            let read_count = preadv(
+            let read_count = readv(
                 self.handle.as_raw_fd(),
                 iovecs,
                 file_slice.offset as i64,
